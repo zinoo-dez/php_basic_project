@@ -1,0 +1,20 @@
+
+categories table တခုဆောက်ပါ
+အောက်ပါ columns များထည့်ပါ
+id  int(11) AUTO_INCREMENTS
+name varchar(255)
+description text
+created_date datetime
+updated_date datetime
+
+products table  တခုဆောက်ပါ
+အောက်ပါ columns များထည့်ပါ
+id int(11) auto_increment
+name varchar(255)
+category_id inf(11)
+description text 
+model varchar(255) 
+price float 
+photo varchar(255) 
+created_date datetime
+updated_date datetime
