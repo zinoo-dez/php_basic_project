@@ -6,17 +6,39 @@ if (!$_SESSION['cart']) {
     header('location:index.php');
     exit();
 }
+if (isset($_POST['submit'])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
+
+    $order_data = "INSERT INTO orders (name,email,phone,address,status,created_date,updated_date) VALUES ('$name','$email','$phone','$address',0,now(),now())";
+    mysqli_query($conn, $order_data);
+    $order_id = mysqli_insert_id($conn); //auto generate id from last query
+    foreach ($_SESSION['cart'] as $id => $qty) {
+        $order_item = "INSERT INTO order_items (product_id,order_id, qty) VALUES ( '$id','$order_id','$qty')";
+        mysqli_query($conn, $order_item);
+    }
+    unset($_SESSION['cart']);
+    header('location:order-success.php');
+}
+
 ?>
 <div class="container">
     <h3 class="text-center my-3">View Shopping Order Cart</h3>
     <div class="row g-5">
         <div class="col-md-4 col-12 p-5 bg-warning bg-opacity-25">
-            <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="index.php">Continue Shopping</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="clear-cart.php">Cancel Order</a>
-            </li>
+            <ul class="bg-info p-3 bg-opacity-25">
+                <hr>
+                <li class="nav-item">
+                    <a class="nav-link fs-5" aria-current="page" href="index.php">Continue Shopping</a>
+                </li>
+                <hr>
+                <li class="nav-item">
+                    <a class="nav-link fs-5" aria-current="page" href="clear-cart.php">Cancel Order</a>
+                </li>
+                <hr>
+            </ul>
             <div class="ads">
                 <h5>Related Products</h5>
                 <div class="row p-3 g-3">
@@ -90,30 +112,34 @@ if (!$_SESSION['cart']) {
                     </tr>
                 </tbody>
             </table>
-            <form class="row g-3 needs-validation" novalidate>
+            <form action="order.php" class="row g-3" method="post">
                 <h3>Order Now</h3>
                 <hr>
                 <div class="col-md-8 col-12">
                     <label for="" class="form-label"> Name</label>
-                    <input type="text" class="form-control" placeholder="type name" required>
+                    <input type="text" value="<?php echo $name ?? '' ?>" name="name" class="form-control"
+                        placeholder="type name" required>
                 </div>
                 <div class="col-md-8 col-12">
                     <label for="" class="form-label"> Email</label>
-                    <input type="email" class="form-control" placeholder="type email" required>
+                    <input type="email" value="<?php echo $email ?? '' ?>" name="email" class="form-control"
+                        placeholder="type email" required>
                 </div>
                 <div class="col-md-8 col-12">
                     <label for="" class="form-label"> Phone</label>
-                    <input type="text" class="form-control" placeholder="your phone number" required>
+                    <input type="text" value="<?php echo $phone ?? '' ?>" name="phone" class="form-control"
+                        placeholder="your phone number" required>
                 </div>
                 <div class="col-md-8 col-12">
                     <label for="" class="form-label"> Address</label>
-                    <textarea type="email" class="form-control" required></textarea>
+                    <textarea type="email" value="<?php echo $address ?? '' ?>" name="address" class="form-control"
+                        required></textarea>
                 </div>
 
 
 
                 <div class="col-12">
-                    <button class="btn btn-primary" type="submit">Submit Order</button>
+                    <button class="btn btn-primary" name="submit" type="submit">Submit Order</button>
                 </div>
             </form>
         </div>
