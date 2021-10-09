@@ -32,7 +32,6 @@ $result = mysqli_fetch_assoc($res);
         </select>
         <textarea name="description" minlength="33" value="" placeholder="description" id=""
             class="form-control mb-3"><?php echo $result['description'] ?></textarea>
-
         <input type="text" value="<?php echo $result['model'] ?>" required name="model" class="form-control mb-3"
             placeholder="product model">
         <input type="text" value="<?php echo $result['price'] ?>" required name="price" class="form-control mb-3"

@@ -14,6 +14,7 @@ if (isset($_POST['submit'])) {
     if ($email === "" && $password === "") {
         $errors['input-field'] = "input field can't be blank";
     }
+    // $pp = md5("123346");
     if ($email === "admin@admin.com" && $password === "123456") {
         $_SESSION['name'] = "ADMIN";
         $_SESSION['admin'] = true;
@@ -25,14 +26,12 @@ if (isset($_POST['submit'])) {
         $result = mysqli_query($conn, $qry);
         $fetch_data = mysqli_fetch_assoc($result);
         if ($fetch_data) {
-
             // print_r($fetch_data);
             $f_email = $fetch_data['email'] ?? "";
             $f_pass = $fetch_data['password'] ?? "";
             // echo $f_pass;
             // exit();
         }
-
         // $pass_varified = password_verify($password, $f_pass);
 
         if ($email === $f_email && $password === $f_pass) {

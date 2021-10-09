@@ -26,22 +26,16 @@ if ($admin) :
             <h3 class="text-center text-info my-3">Category Lists</h3>
 
             <ul class="p-5">
-                <?php
-                    while ($data = mysqli_fetch_assoc($result)) :
-                    ?>
+                <?php while ($data = mysqli_fetch_assoc($result)) : ?>
                 <li title="<?php echo $data['description'] ?>"
                     class="nav-link p-2 overflow-hidden bg-secondary bg-opacity-25 mb-2 px-4">
-                    <?php
-                            echo $data['name']
-                            ?>
+                    <?php echo $data['name']  ?>
                     <a href="cat-edit.php?id=<?php echo $data['id'] ?>"> <span
                             class="btn btn-sm btn-success float-end ms-2 ">edit</span></a>
                     <a href="cat-del.php?id=<?php echo $data['id'] ?>"> <span
                             class="btn btn-sm btn-danger float-end">delete</span></a>
                 </li>
-                <?php
-                    endwhile
-                    ?>
+                <?php endwhile ?>
             </ul>
         </div>
     </div>
