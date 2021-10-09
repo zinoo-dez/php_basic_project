@@ -24,11 +24,14 @@ if (isset($_POST['submit'])) {
         $qry = "SELECT * FROM users WHERE email = '$email' ";
         $result = mysqli_query($conn, $qry);
         $fetch_data = mysqli_fetch_assoc($result);
-        // print_r($fetch_data);
-        $f_email = $fetch_data['email'] ?? "";
-        $f_pass = $fetch_data['password'] ?? "";
-        // echo $f_pass;
-        // exit();
+        if ($fetch_data) {
+
+            // print_r($fetch_data);
+            $f_email = $fetch_data['email'] ?? "";
+            $f_pass = $fetch_data['password'] ?? "";
+            // echo $f_pass;
+            // exit();
+        }
 
         // $pass_varified = password_verify($password, $f_pass);
 

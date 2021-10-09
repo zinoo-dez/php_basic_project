@@ -4,8 +4,7 @@ $name = isset($_SESSION['name']);
 if (isset($_SESSION['cart'])) {
     $carts = $_SESSION['cart'];
     $total = 0;
-    foreach ($carts as $key => $qty) {
-
+    foreach ($carts as $id => $qty) {
         $total += $qty;
     }
 };
@@ -35,13 +34,16 @@ if (isset($_SESSION['cart'])) {
             <div class="container">
                 <a class="navbar-brand text-primary" href="#"><i class="fa fa-shopping-bag" aria-hidden="true"></i>
                     7DaysStore</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php"> <i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                            <a class="nav-link active" aria-current="page" href="index.php"> <i class="fa fa-home"
+                                    aria-hidden="true"></i> Home</a>
                         </li>
 
                         <li class="nav-item">
@@ -50,45 +52,48 @@ if (isset($_SESSION['cart'])) {
                         <?php
                         if ($name) :
                         ?>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <?php
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <?php
                                     echo $_SESSION['name'];
                                     ?>
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="admin-page.php">Admin-page</a></li>
-                                    <li><a class="dropdown-item" href="logout.php">Logout</a></li>
-                                </ul>
-                            </li>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="admin-page.php">Admin-page</a></li>
+                                <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+                            </ul>
+                        </li>
                         <?php
                         else :
                         ?>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Member
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="login.php">Login</a></li>
-                                    <li><a class="dropdown-item" href="register.php">Register</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="logout.php">Logout</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle btn btn-sm btn-success text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa fa-shopping-cart"></i> <?php
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Member
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="login.php">Login</a></li>
+                                <li><a class="dropdown-item" href="register.php">Register</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle btn btn-sm btn-success text-white" href="#"
+                                id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-shopping-cart"></i> <?php
                                                                         echo $total ?? ""
                                                                         ?>
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="order.php">order now</a></li>
-                                    <li><a class="dropdown-item" href="clear-cart.php">cancel</a></li>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="order.php">order now</a></li>
+                                <li><a class="dropdown-item" href="clear-cart.php">cancel</a></li>
 
-                                </ul>
-                            </li>
+                            </ul>
+                        </li>
                         <?php
                         endif
                         ?>
